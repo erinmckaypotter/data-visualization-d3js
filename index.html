@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Mod 12 - D3.js</title>
+	<!-- D3.js CDN-->
+	<script src="https://d3js.org/d3.v6.min.js"></script>
+    <style>
+        body {
+            font-family: helvetica, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: darkslategray;
+            margin: 30px auto 20px auto;   
+        }
+        h2 {
+            color: slategray;
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        p {
+            color: indianred;
+        }
+       
+    </style>
+</head>
+<body>
+    <h1>Vaccination Rates for U.S. States with<br> Highest Daily Infection Rates</h1>
+    <h2>Click for daily new cases per 100k people</h2>
+
+    <p id="info"></p>
+
+	<script>
+	// define dataset
+    d3.json('data.json').then( 
+    function(d) {
+        // run this after data loads
+        console.log(d);	
+        // call d3 and make parent svg
+        let parentSVG = d3.select("body")
+        .append("svg")
+        .attr("width", 750)
+        .attr("height", 500);
+    
+        // create svg rectangle shapes inside parent svg
+        let bars = parentSVG.selectAll("rect")
+            .data(d)
+            .enter()
+            .append("rect") /* d3 makes a rect for each value in array */
+            .attr("fill", function(d) {
+                return d.color;
+            })
+            .attr("stroke", "black")
+            .attr("x", 0)
+            .attr("width",
+            function( d ) {
+                return d.vax_percentage * 10;
+            }
+            )
+            .attr("y", 
+            function( d, i ) {
+                return i * 35;
+                }
+            )
+            .attr("height", 25)
+            .attr("data-info", function(d){
+                return d.new_cases;
+            })
+            .on("click", handleClick);
+
+        // create labels
+        let nameLabel = parentSVG.selectAll("text")
+            .data(d)
+            .enter()
+            .append("text") /* d3 makes a rect for each value in array */
+            .text(function(d){
+                return d.state;
+            })
+            .attr("fill", "black")
+            .attr("x", 5)
+            .attr("width",
+            function( d ) {
+                return d.vax_percentage * 10;
+            }
+            )
+            .attr("y", 
+            function( d, i ) {
+                return (i + 0.5) * 35;
+                }
+            )
+            .attr("height", 25)
+            .attr("font-size", 16)
+            .attr("font-family", "helvetica")
+
+        let numberLabel = parentSVG.selectAll("text.number")
+            .data(d)
+            .enter()
+            .append("text") /* d3 makes a rect for each value in array */
+            .text(function(d){
+                return d.vax_percentage + "%";
+            })
+            .attr("class", "number")
+            .attr("fill", "indianred")
+            .attr("x", function(d){
+                return (d.vax_percentage * 10) - 35;
+            })
+            .attr("width", 50)
+            .attr("y", 
+            function( d, i ) {
+                return (i + 0.5) * 35;
+                }
+            )
+            .attr("height", 25)
+            .attr("font-size", 16)
+            .attr("font-family", "helvetica")
+        }
+    );
+
+    
+
+    function handleClick (clickedObject) {
+        // .target = clicked item, .dataset = accesses items data-* attributes
+        document.getElementById("info").innerHTML = clickedObject.target.dataset.info + " new cases per 100k";
+    }
+
+	</script>	
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+    {
+        "state": "Alaska",
+        "vax_percentage": 53,
+        "new_cases": 76,
+        "color": "navajowhite" 
+    },
+    {
+        "state": "North Dakota",
+        "vax_percentage": 48,
+        "new_cases": 67,
+        "color": "lightgrey" 
+    },
+    {
+        "state": "Colorado",
+        "vax_percentage": 62,
+        "new_cases": 61,
+        "color": "lightsalmon" 
+    },
+    {
+        "state": "New Mexico",
+        "vax_percentage": 63,
+        "new_cases": 59,
+        "color": "lightgreen" 
+    },
+    {
+        "state": "Montana",
+        "vax_percentage": 51,
+        "new_cases": 58,
+        "color": "khaki" 
+    },
+    {
+        "state": "Wyoming",
+        "vax_percentage": 45,
+        "new_cases": 57,
+        "color": "lavender" 
+    },
+    {
+        "state": "Minnesota",
+        "vax_percentage": 62,
+        "new_cases": 54,
+        "color": "lightsteelblue" 
+    },
+    {
+        "state": "Utah",
+        "vax_percentage": 54,
+        "new_cases": 53,
+        "color": "mediumturquoise" 
+    },
+    {
+        "state": "Vermont",
+        "vax_percentage": 72,
+        "new_cases": 50,
+        "color": "navajowhite" 
+    },
+    {
+        "state": "Michigan",
+        "vax_percentage": 54,
+        "new_cases": 49,
+        "color": "lavender" 
+    }
+]
